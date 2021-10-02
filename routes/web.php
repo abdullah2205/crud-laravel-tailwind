@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Anggota;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    //$data['anime'] = Anime::all();
-    return view('app'); //, $data);
+    $anggota['anggota'] = Anggota::all(); //anggota = ke view
+    return view('app', $anggota);
 });
 
-Route::resource('anime', 'AppController');
+Route::resource('anggota', 'AppController'); // anggota = route nya untuk button

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anggota;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -13,7 +14,8 @@ class AppController extends Controller
      */
     public function index()
     {
-        return view('app');
+        $data_anggota['anggota'] = Anggota::all(); //data_anggota untuk ditampilkan ke view
+        return view('app', $anggota);
     }
 
     /**
