@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //$data['anime'] = Anime::all();
+    return view('app'); //, $data);
 });
+
+Route::resource('anime', 'AppController');
