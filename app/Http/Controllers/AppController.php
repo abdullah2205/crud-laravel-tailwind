@@ -14,7 +14,7 @@ class AppController extends Controller
      */
     public function index()
     {
-        $data_anggota['anggota'] = Anggota::all(); //data_anggota untuk ditampilkan ke view
+        $anggota['anggota'] = Anggota::all(); //data_anggota untuk ditampilkan ke view
         return view('app', $anggota);
     }
 
@@ -81,6 +81,9 @@ class AppController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $anggota = Anggota::find($id);
+        $anggota->delete();
+
+        return redirect()->route('anggota.index')->with('success', 'Data Anggota telah dihapus!');
     }
 }
