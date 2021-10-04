@@ -14,8 +14,8 @@ class AppController extends Controller
      */
     public function index()
     {
-        $anggota['anggota'] = Anggota::all(); //data_anggota untuk ditampilkan ke view
-        return view('app', $anggota);
+        $data['anggotas'] = Anggota::paginate(3); //data_anggota untuk ditampilkan ke view
+        return view('app', $data);
     }
 
     /**
