@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+	  <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.2/dist/full.css" rel="stylesheet" type="text/css" />
     <title>Document</title>
 </head>
 <body>
     <div class="container py-4 mx-auto">
-		<div class="my-4 rounded-xl bg-gray-200 bg-opacity-50 shadow-lg py-2 px-4">
+		<div class="my-4 rounded-xl bg-gray-200 bg-opacity-50 shadow-lg py-1 px-4">
 			<p class="font-bold text-blue-500 py-4 text-xl">
 				Data Anggota PS. Sayta Wijasena
 			</p>
-			<button  id="delete-btn" class="mb-2 py-1  w-24 text-center bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-lg text-white">
+			<button class="mb-2 py-1 w-24 text-center bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-lg text-white">
 				Tambah
 			</button>
 			<div class="mb-4 mt-2 rounded-xl bg-white">
 				<div class="pb-2 pt-1">
+					
 					@if (count($errors))
 						<div class="alert alert-danger">
 							<ul class="mb-0">
@@ -62,73 +65,69 @@
 					<table class="table-auto w-full text-left">
 						<thead class="text-blue-500">
 							<tr>
-								<th class="px-4 py-2 ">No. Induk</th>
-								<th>Nama</th>
-								<th>Tempat Lahir</th>
-								<th>Tanggal Lahir</th>
-								<th>Jenis Kelamin</th>
-								<th>Alamat</th>
-								<th>Ranting Latihan</th>
-								<th>Ikat Pinggang</th>
-								<th>Jabatan</th>
+								<th class="w-28 py-4 pl-4">No. Induk</th>
+								<th class="w-72">Nama</th>
+								<th class="w-60 ">Ranting Latihan</th>
+								<th class="w-36">Ikat Pinggang</th>
+								<th class="w-60">Detail</th>
 								<th class="w-36">Aksi</th>
 							</tr>
 						</thead>
 						<tbody class="text-gray-600 bg-white">
-							<?php $no=1?>
-							@foreach ($anggotas as $no => $anggota)
+							@foreach ($anggotas as $anggota)
 							<tr class="hover:bg-gray-200 hover:bg-opacity-50">
 								<td class="px-4 py-2">{{ $anggota->nomor_induk }}</td>
 								<td>{{ $anggota->nama }}</td>
-								<td>{{ $anggota->tempat_lahir }}</td>
-								<td>{{ $anggota->tanggal_lahir }}</td>
-								<td>{{ $anggota->jenis_kelamin }}</td>
-								<td>{{ $anggota->alamat }}</td>
 								<td>{{ $anggota->ranting_latihan }}</td>
 								<td>{{ $anggota->ikat_pinggang }}</td>
-								<td>{{ $anggota->jabatan }}</td>
 								<td>
-									<form action="{{ route('anggota.destroy', $anggota->id) }}" method="post">
+									<div class="collapse"> 
+										<input type="checkbox">
+										<div class="collapse-title">
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+											</svg>
+										</div> 
+										<div class="collapse-content"> 
+											<table class="table-auto text-sm">
+												<tr>
+													<th class="text-blue-500 pb-1">Tempat Tanggal Lahir</th>
+												</tr>
+												<tr>
+													<td>{{ $anggota->tempat_lahir }}, {{ $anggota->tanggal_lahir }}</td>
+												</tr>
+												<tr>
+													<th class="text-blue-500 pb-1">Jenis Kelamin</th>
+												</tr>
+												<tr>
+													<td>{{ $anggota->jenis_kelamin }}</td>
+												</tr>
+												<tr>
+													<th class="text-blue-500 pb-1">Alamat</th>
+												</tr>
+												<tr>
+													<td>{{ $anggota->alamat }}</td>
+												</tr>
+												<tr>
+													<th class="text-blue-500 pb-1">Jabatan</th>
+												</tr>												
+												<tr>
+													<td>{{ $anggota->jabatan }}</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</td>
+								<td>
+									  <form action="{{ route('anggota.destroy', $anggota->id) }}" method="post">
 										<a href="{{ route('anggota.edit', $anggota->id) }}">
-											<button class="bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 px-2 py-1 rounded-lg text-white mr-1"> Ubah </button>
+											<button type="button" class="bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 px-2 py-1 rounded-lg text-white mr-1"> Ubah </button>
 										</a>
 										@csrf
 										@method('DELETE')
 											<button class="bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 px-2 py-1 rounded-lg text-white" onclick="return confirm('Are you sure you want to Delete this Data?')">Hapus</button>
 									</form>
 								</td>
-							</tr>
-							<tr>
-								<td colspan="6" class="hiddenRow">
-									<div class="accordian-body collapse p-4" id="data{{ $anggotas->firstItem() + $no }}">
-										<div class="row">
-											<div class="col-md-7">
-												<table>
-													<tr>
-														<th class="text-blue-500">Tempat Lahir</th>
-														<td class="px-4">:</td>
-														<td>{{ $anggota->tempat_lahir }}</td>
-													</tr>
-													<tr>
-														<th class="text-blue-500">Tanggal Lahir</th>
-														<td class="px-4">:</td>
-														<td>{{ $anggota->tanggal_lahir }}</td>
-													</tr>
-													<tr>
-														<th class="text-blue-500">Alamat</th>
-														<td class="px-4">:</td>
-														<td>{{ $anggota->alamat }}</td>
-													</tr>
-													<tr>
-														<th class="text-blue-500">Jabatan</th>
-														<td class="px-4">:</td>
-														<td>{{ $anggota->jabatan }}</td>
-													</tr>
-												</table>
-											</div>
-										</div>
-									</div> 
-								</td> 
 							</tr>
 							@endforeach
 						</tbody>
@@ -139,36 +138,7 @@
 		</div>
 	</div>
 
-	<script>
-		window.addEventListener('DOMContentLoaded', function() {
-			const overlay = document.querySelector('#overlay')
-			const delBtn = document.querySelector('#delete-btn')
-			const closeBtn = document.querySelector('#close-modal')
-
-			delBtn.addEventListener('click', () => {
-				overlay.classList.remove('hidden')
-				overlay.classList.add('flex')
-			})
-			closeBtn.addEventListener('click', () => {
-				overlay.classList.add('hidden')
-				overlay.classList.remove('flex')
-			})
-		})
-	</script>
-	  <style>
-
-		/*Banner open/load animation*/
-		.alert-banner {
-			-webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-					animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-		}
-
-		/*Banner close animation*/
-		.alert-banner input:checked ~ * {
-			-webkit-animation: slide-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-					animation: slide-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;		
-		}
-
+	<style>
 		/*Toast open/load animation*/
 		.alert-toast {
 			-webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -193,7 +163,6 @@
 					transform:translateY(1000px);opacity:0}}@-webkit-keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);
 						transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@-webkit-keyframes fade-out-right{0%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}100%{-webkit-transform:translateX(50px);transform:translateX(50px);opacity:0}}
 						@keyframes fade-out-right{0%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}100%{-webkit-transform:translateX(50px);transform:translateX(50px);opacity:0}}
-	
-	  </style>
+	</style>
 </body>
 </html>

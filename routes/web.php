@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $anggota['anggota'] = Anggota::all(); //anggota = ke view
-    return view('app', $anggota);
+    $data['anggotas'] = Anggota::paginate(4); //anggota = ke view
+    return view('app', $data);
 });
 
 Route::resource('anggota', 'AppController'); // anggota = route nya untuk button

@@ -14,7 +14,7 @@ class AppController extends Controller
      */
     public function index()
     {
-        $data['anggotas'] = Anggota::paginate(3); //data_anggota untuk ditampilkan ke view
+        $data['anggotas'] = Anggota::paginate(4); //data_anggota untuk ditampilkan ke view
         return view('app', $data);
     }
 
@@ -58,7 +58,8 @@ class AppController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['anggotas'] = Anggota::find($id);
+        return view('edit', $data);
     }
 
     /**
