@@ -71,7 +71,25 @@ class AppController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data['anggotas'] = Anggota::find($id);
+
+        $request->validate([
+            'nomor_induk' => 'required',
+            'nama' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'ranting_latihan' => 'required',
+            'ikat_pinggang' => 'required',
+            'jabatan' => 'required'
+        ],
+        ['required' => ':form harus diisi']); //ini dari attribut name dari form
+
+        $data['anggotas']->update($request->all());
+
+        //dd(Anggota::find($id));
+        return redirect()->route('anggota.index')->with('success', 'Data Anggota telah diubah!');
     }
 
     /**

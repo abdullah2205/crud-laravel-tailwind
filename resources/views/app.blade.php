@@ -8,7 +8,20 @@
 		<title>SIM PS. Satya Wijasena</title>
 	</head>
 	<body>
-		<div class="container py-1 px-4 mx-auto bg-blue-200">
+		<div class="container py-1 px-4 h-screen mx-auto bg-blue-200">
+
+			@if ($msg = Session::get('success'))
+				<div class="alert-toast fixed bottom-0 right-0 m-8 w-5/6 md:w-full max-w-xs">
+					<input type="checkbox" class="hidden" id="footertoast">
+					<label class="close cursor-pointer flex items-start justify-between w-full p-3 bg-green-400 h-24 rounded-xl shadow-lg text-white font-bold" for="footertoast">
+						{{ $msg }}
+					<svg class="mt-1 fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 18 18">
+						<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+					</svg>
+					</label>
+				</div>
+			@endif
+
 			<div class="my-4 rounded-xl glass shadow-lg py-1 px-4">
 				<p class="font-bold text-blue-500 py-4 text-xl">
 					Data Anggota PS. Sayta Wijasena
@@ -18,28 +31,6 @@
 				</button>
 				<div class="mb-4 mt-2 rounded-xl bg-white shadow-md">
 					<div class="pb-2 pt-1">
-						@if (count($errors))
-							<div class="alert alert-danger">
-								<ul class="mb-0">
-									@foreach ($errors->all() as $error)
-										<li class="m-0 p-0">{{ $error }}</li>
-									@endforeach
-								</ul>
-							</div>
-						@endif
-				
-						@if ($msg = Session::get('success'))
-							<div class="alert-toast fixed bottom-0 right-0 m-8 w-5/6 md:w-full max-w-xs">
-								<input type="checkbox" class="hidden" id="footertoast">
-								<label class="close cursor-pointer flex items-start justify-between w-full p-3 bg-green-400 h-24 rounded-xl shadow-lg text-white" for="footertoast">
-									{{ $msg }}
-								<svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-									<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-								</svg>
-								</label>
-							</div>
-						@endif
-
 						<div class="hidden bg-black bg-opacity-50 absolute inset-0 items-center justify-center text-gray-800" id="overlay">
 							<div class="bg-gray-200 max-w-sm p-3 rounded-xl shadow-md">
 								<div class="flex justify-between items-center ">
@@ -71,7 +62,9 @@
 								</tr>
 							</thead>
 							<tbody class="text-gray-600 bg-white">
-								@foreach ($anggotas as $anggota)
+
+								@forelse ($anggotas as $anggota)
+
 								<tr class="hover:bg-gray-200 hover:bg-opacity-50">
 									<td class="px-4 py-2">{{ $anggota->nomor_induk }}</td>
 									<td>{{ $anggota->nama }}</td>
@@ -88,25 +81,25 @@
 											<div class="collapse-content"> 
 												<table class="table-auto text-sm">
 													<tr>
-														<th class="text-blue-500 pb-1">Tempat Tanggal Lahir</th>
+														<th class="h-8 align-bottom text-blue-500">Tempat Tanggal Lahir</th>
 													</tr>
 													<tr>
 														<td>{{ $anggota->tempat_lahir }}, {{ $anggota->tanggal_lahir }}</td>
 													</tr>
 													<tr>
-														<th class="text-blue-500 pb-1">Jenis Kelamin</th>
+														<th class="h-8 align-bottom text-blue-500">Jenis Kelamin</th>
 													</tr>
 													<tr>
 														<td>{{ $anggota->jenis_kelamin }}</td>
 													</tr>
 													<tr>
-														<th class="text-blue-500 pb-1">Alamat</th>
+														<th class="h-8 align-bottom text-blue-500">Alamat</th>
 													</tr>
 													<tr>
 														<td>{{ $anggota->alamat }}</td>
 													</tr>
 													<tr>
-														<th class="text-blue-500 pb-1">Jabatan</th>
+														<th class="h-8 align-bottom text-blue-500">Jabatan</th>
 													</tr>												
 													<tr>
 														<td>{{ $anggota->jabatan }}</td>
@@ -126,7 +119,13 @@
 										</form>
 									</td>
 								</tr>
-								@endforeach
+
+								@empty
+								<tr>
+									<td class="pl-4">Data Kosong</td>
+								</tr>
+								@endforelse
+								
 							</tbody>
 						</table>
 						{{ $anggotas->links('layouts/pagination') }}
