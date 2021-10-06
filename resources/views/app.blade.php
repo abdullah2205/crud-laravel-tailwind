@@ -9,47 +9,30 @@
 	</head>
 	<body>
 		<div class="container py-1 px-4 h-screen mx-auto bg-blue-200">
-
-			@if ($msg = Session::get('success'))
-				<div class="alert-toast fixed bottom-0 right-0 m-8 w-5/6 md:w-full max-w-xs">
-					<input type="checkbox" class="hidden" id="footertoast">
-					<label class="close cursor-pointer flex items-start justify-between w-full p-3 bg-green-400 h-24 rounded-xl shadow-lg text-white font-bold" for="footertoast">
-						{{ $msg }}
-					<svg class="mt-1 fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 18 18">
-						<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-					</svg>
-					</label>
-				</div>
-			@endif
-
 			<div class="my-4 rounded-xl glass shadow-lg py-1 px-4">
+				
+				@if ($msg = Session::get('success'))
+				<div class="">
+					<div class="alert-toast mt-3 mr-4 absolute right-0 md:w-full max-w-xs">
+						<input type="checkbox" class="hidden" id="footertoast">
+						<label class="close cursor-pointer flex justify-between p-3 bg-green-500 h-20 rounded-xl shadow-xl text-white font-bold" for="footertoast">
+							{{ $msg }}
+						<svg class="mt-1 fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 18 18">
+							<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+						</svg>
+						</label>
+					</div>
+				</div>
+				@endif
+
 				<p class="font-bold text-blue-500 py-4 text-xl">
 					Data Anggota PS. Sayta Wijasena
 				</p>
-				<button class="btn btn-sm mb-2 border-0 bg-green-500 hover:bg-green-600 rounded-lg text-white">
+				<button class="btn btn-sm mb-2 border-0 bg-green-500 bg-transparent hover:bg-green-600 rounded-lg text-white">
 					Tambah
 				</button>
 				<div class="mb-4 mt-2 rounded-xl bg-white shadow-md">
 					<div class="pb-2 pt-1">
-						<div class="hidden bg-black bg-opacity-50 absolute inset-0 items-center justify-center text-gray-800" id="overlay">
-							<div class="bg-gray-200 max-w-sm p-3 rounded-xl shadow-md">
-								<div class="flex justify-between items-center ">
-									<h4 class="text-lg font-bold mb-2">Konfirmasi Hapus</h4>
-									<svg id="close-modal" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:bg-gray-400 hover:text-white rounded-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-									</svg>
-								</div>
-								<div>
-									<p>
-										Data yang telah dihapus tidak bisa dikembalikan, yakin hapus data?
-									</p>
-								</div>
-								<div class="mt-3 flex justify-end space-x-3">
-									<button class="px-3 py-1 hover:bg-red-300 hover:text-red-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">Batal</button>
-									<button class="bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 px-3 py-1 rounded-lg text-white">Hapus</button>
-								</div>
-							</div>
-						</div>
 						<table class="table-auto w-full text-left">
 							<thead class="text-blue-500">
 								<tr>
@@ -64,7 +47,6 @@
 							<tbody class="text-gray-600 bg-white">
 
 								@forelse ($anggotas as $anggota)
-
 								<tr class="hover:bg-gray-200 hover:bg-opacity-50">
 									<td class="px-4 py-2">{{ $anggota->nomor_induk }}</td>
 									<td>{{ $anggota->nama }}</td>
@@ -119,7 +101,6 @@
 										</form>
 									</td>
 								</tr>
-
 								@empty
 								<tr>
 									<td class="pl-4">Data Kosong</td>
