@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 		<title>SIM PS. Satya Wijasena</title>
 	</head>
 	<body>
@@ -12,15 +13,15 @@
 			<div class="my-4 rounded-xl glass shadow-lg py-1 px-4">
 				
 				@if ($msg = Session::get('success'))
-				<div class="alert-toast mt-3 mr-4 absolute right-0 md:w-full max-w-xs">
-					<input type="checkbox" class="hidden" id="footertoast">
-					<label class="close cursor-pointer flex justify-between p-3 bg-green-500 h-20 rounded-xl shadow-xl text-white font-bold" for="footertoast">
-						{{ $msg }}
-					<svg class="mt-1 fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 18 18">
-						<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-					</svg>
-					</label>
-				</div>
+					<div class="alert-toast mt-3 mr-4 absolute right-0 md:w-full max-w-xs">
+						<input type="checkbox" class="hidden" id="footertoast">
+						<label class="close cursor-pointer flex justify-between p-3 bg-green-500 h-20 rounded-xl shadow-xl text-white font-bold" for="footertoast">
+							{{ $msg }}
+						<svg class="mt-1 fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 18 18">
+							<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+						</svg>
+						</label>
+					</div>
 				@endif
 
 				<p class="font-bold text-blue-500 py-4 text-xl">
@@ -89,14 +90,34 @@
 										</div>
 									</td>
 									<td>
-										<form action="{{ route('anggota.destroy', $anggota->id) }}" method="post">
+										<div class="flex">
 											<a href="{{ route('anggota.edit', $anggota->id) }}">
-												<button type="button" class="btn btn-sm border-0 bg-yellow-500 hover:bg-yellow-600 rounded-lg text-white mr-1"> Ubah </button>
+												<button type="button" class="btn btn-sm border-0 bg-yellow-500 hover:bg-yellow-600 rounded-lg text-white mr-2"> Ubah </button>
 											</a>
-											@csrf
-											@method('DELETE')
-												<button class="btn btn-sm border-0 bg-red-500 hover:bg-red-600 rounded-lg text-white" onclick="return confirm('Are you sure you want to Delete this Data?')">Hapus</button>
-										</form>
+											<div x-data="{ show: false }">
+												<button @click={show=true} type="button" class="btn btn-sm rounded-lg hover:bg-red-600 bg-red-500 border-0">Hapus</Button>
+												<div x-show="show" tabindex="0" class="absolute inset-0 text-gray-700" id="overlay">
+													<div  @click.away="show = false" class="z-50 relative mt-20 mx-auto max-w-md">
+														<div class="bg-gray-100 max-w-sm px-3 py-3 rounded-xl ">
+															<button @click={show=false} class="fill-current h-6 w-6 absolute right-0 top-0 m-6 font-3xl font-bold"></button>
+															<h4 class="text-lg font-bold mb-2">Konfirmasi Hapus</h4>
+															<div>
+																<p>Data yang telah dihapus tidak bisa dikembalikan, yakin hapus data?</p>
+															</div>
+															<div class="mt-3 flex justify-end space-x-2">
+																<button @click={show=false} type="button" class="btn btn-sm bg-gray-500 hover:bg-gray-600  border-0 rounded-lg ">Batal</button>
+																<form action="{{ route('anggota.destroy', $anggota->id) }}" method="post">
+																	@csrf
+																	@method('DELETE')
+																	<button class="btn btn-sm border-0 bg-red-500 hover:bg-red-600 rounded-lg text-white">Hapus</button>
+																</form>
+															</div>
+														</div>
+													</div>
+													<div class="z-40 overflow-auto inset-0  fixed bg-black opacity-50"></div>
+												</div>
+											</div>
+										</div>
 									</td>
 								</tr>
 								@empty
