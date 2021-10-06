@@ -12,16 +12,14 @@
 			<div class="my-4 rounded-xl glass shadow-lg py-1 px-4">
 				
 				@if ($msg = Session::get('success'))
-				<div class="">
-					<div class="alert-toast mt-3 mr-4 absolute right-0 md:w-full max-w-xs">
-						<input type="checkbox" class="hidden" id="footertoast">
-						<label class="close cursor-pointer flex justify-between p-3 bg-green-500 h-20 rounded-xl shadow-xl text-white font-bold" for="footertoast">
-							{{ $msg }}
-						<svg class="mt-1 fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 18 18">
-							<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-						</svg>
-						</label>
-					</div>
+				<div class="alert-toast mt-3 mr-4 absolute right-0 md:w-full max-w-xs">
+					<input type="checkbox" class="hidden" id="footertoast">
+					<label class="close cursor-pointer flex justify-between p-3 bg-green-500 h-20 rounded-xl shadow-xl text-white font-bold" for="footertoast">
+						{{ $msg }}
+					<svg class="mt-1 fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 18 18">
+						<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+					</svg>
+					</label>
 				</div>
 				@endif
 

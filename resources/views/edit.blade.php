@@ -31,57 +31,89 @@
 							@csrf
 							<div class="form-control">
 								<label class="label">
-								<span class="label-text">Nomor Induk</span>
+									<span class="label-text">Nomor Induk</span>
 								</label> 
 								<input type="text" name="nomor_induk" class="input input-warning bg-gray-100 input-sm border-0" value="{{ $anggotas->nomor_induk }}">
 							</div>
 							<div class="form-control">
 								<label class="label">
-								<span class="label-text">Nama</span>
+									<span class="label-text">Nama</span>
 								</label> 
 								<input type="text" name="nama" class="input input-warning bg-gray-100 input-sm border-0" value="{{ $anggotas->nama }}">
 							</div>
 							<div class="form-control">
 								<label class="label">
-								<span class="label-text">Tempat Lahir</span>
+									<span class="label-text">Tempat Lahir</span>
 								</label> 
 								<input type="text" name="tempat_lahir" class="input input-warning bg-gray-100 input-sm border-0" value="{{ $anggotas->tempat_lahir }}">
 							</div>
 							<div class="form-control">
 								<label class="label">
-								<span class="label-text">Tanggal Lahir</span>
+									<span class="label-text">Tanggal Lahir</span>
 								</label> 
 								<input type="date" name="tanggal_lahir" class="input input-warning bg-gray-100 input-sm border-0" value="{{ $anggotas->tanggal_lahir }}">
 							</div>
 							<div class="form-control">
 								<label class="label">
-								<span class="label-text">Jenis Kelamin</span>
+									<span class="label-text">Jenis Kelamin</span>
 								</label> 
-								<input type="text" name="jenis_kelamin" class="input input-warning bg-gray-100 input-sm border-0" value="{{ $anggotas->jenis_kelamin }}">
+								<div class="flex space-x-2 bg-gray-100 rounded-lg">
+									<div class="form-control w-48">
+										<label class="cursor-pointer inline-flex items-center py-1">
+											<input type="radio" {{ $anggotas->jenis_kelamin == "Laki-laki" ? "checked" : ""}} name="jenis_kelamin" class="ml-2 radio radio-md radio-accent" value="Laki-laki">
+											<span class="label-text ml-2">Laki-laki</span> 
+										</label>
+									</div>
+									<div class="form-control w-48">
+										<label class="cursor-pointer inline-flex items-center py-1">
+											<input type="radio" {{ $anggotas->jenis_kelamin == "Perempuan" ? "checked" : ""}} name="jenis_kelamin" class="ml-2 radio radio-md radio-accent" value="Perempuan">
+											<span class="label-text ml-2">Perempuan</span>
+										</label>
+									</div>
+
+								</div>
 							</div>
 							<div class="form-control">
 								<label class="label">
-								<span class="label-text">Alamat</span>
+									<span class="label-text">Alamat</span>
 								</label> 
 								<input type="text" name="alamat" class="input input-warning bg-gray-100 input-sm border-0" value="{{ $anggotas->alamat }}">
 							</div>
 							<div class="form-control">
 								<label class="label">
-								<span class="label-text">Ranting Latihan</span>
+									<span class="label-text">Ranting Latihan</span>
 								</label> 
 								<input type="text" name="ranting_latihan" class="input input-warning bg-gray-100 input-sm border-0" value="{{ $anggotas->ranting_latihan }}">
 							</div>
 							<div class="form-control">
 								<label class="label">
-								<span class="label-text">Ikat Pinggang</span>
-								</label> 
-								<input type="text" name="ikat_pinggang" class="input input-warning bg-gray-100 input-sm border-0" value="{{ $anggotas->ikat_pinggang }}">
+									<span class="label-text">Ikat Pinggang</span>
+								</label>
+								<select class="select select-sm border-0 bg-gray-100 select-warning font-normal" name="ikat_pinggang">
+									<option disabled="disabled" selected="selected">Pilih Ikat Pinggang</option> 
+									<option value="Putih" {{ $anggotas->ikat_pinggang == "Putih" ? 'selected' : '' }}> Putih</option>
+									<option value="Kuning" {{ $anggotas->ikat_pinggang == "Kuning" ? 'selected' : '' }}> Kuning</option>
+									<option value="Oranye" {{ $anggotas->ikat_pinggang == "Oranye" ? 'selected' : '' }}> Oranye</option>
+									<option value="Hijau" {{ $anggotas->ikat_pinggang == "Hijau" ? 'selected' : '' }}> Hijau</option>
+									<option value="Hijau Bintang" {{ $anggotas->ikat_pinggang == "Hijau Bintang" ? 'selected' : '' }}> Hijau Bintang</option>
+									<option value="Biru" {{ $anggotas->ikat_pinggang == "Biru" ? 'selected' : '' }}> Biru</option>
+									<option value="Biru Bintang" {{ $anggotas->ikat_pinggang == "Biru Bintang" ? 'selected' : '' }}> Biru Bintang</option>
+									<option value="Cokelat" {{ $anggotas->ikat_pinggang == "Cokelat" ? 'selected' : '' }}> Cokelat</option>
+									<option value="Cokelat Bintang" {{ $anggotas->ikat_pinggang == "Cokelat Bintang" ? 'selected' : '' }}> Cokelat Bintang</option>
+									<option value="Hitam" {{ $anggotas->ikat_pinggang == "Hitam" ? 'selected' : '' }}> Hitam</option>
+									<option value="Hitam Pembina" {{ $anggotas->ikat_pinggang == "Hitam Pembina" ? 'selected' : '' }}> Hitam Pembina</option>
+								</select>
 							</div>
 							<div class="form-control">
 								<label class="label">
-								<span class="label-text">Jabatan</span>
+									<span class="label-text">Jabatan</span>
 								</label> 
-								<input type="text" name="jabatan" class="input input-warning bg-gray-100 input-sm border-0" value="{{ $anggotas->jabatan }}">
+								<select class="select select-sm border-0 bg-gray-100 select-warning font-normal" name="jabatan">
+									<option disabled="disabled" selected="selected">Pilih Jabatan</option> 
+									<option value="Anggota" {{ $anggotas->jabatan == "Anggota" ? 'selected' : '' }}> Anggota</option>
+									<option value="Pengurus" {{ $anggotas->jabatan == "Pengurus" ? 'selected' : '' }}> Pengurus</option>
+									<option value="Dewan Pendekar" {{ $anggotas->jabatan == "Dewan Pendekar" ? 'selected' : '' }}> Dewan Pendekar</option>
+								</select>
 							</div>
 							<div class="flex justify-end col-span-3 space-x-1">
 								<a href="{{ route('anggota.index') }}" class="mt-3">
@@ -89,7 +121,6 @@
 								</a>
 								<button class="btn btn-sm mt-3 mb-1 right-0  border-0 bg-yellow-500 hover:bg-yellow-600 rounded-lg text-white">Simpan</button>
 							</div>
-							
 						</form>
 					</div>
 				</div>
