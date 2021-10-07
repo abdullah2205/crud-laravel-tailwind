@@ -17,14 +17,12 @@
                     </a>
                 </div>
             @endif
-
             {{-- Pagination Elements --}}
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
                     <div class="page-item disabled" aria-disabled="true"><span class="page-link">{{ $element }}</span></div>
                 @endif
-
                 {{-- Array Of Links --}}
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
@@ -44,7 +42,6 @@
                     @endforeach
                 @endif
             @endforeach
-
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <div>

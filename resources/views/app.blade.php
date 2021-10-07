@@ -11,7 +11,7 @@
 	<body>
 		<div class="container py-1 px-4 h-screen mx-auto bg-blue-200">
 			<div class="my-4 rounded-xl glass shadow-lg py-1 px-4">
-				
+				{{-- Notification Toast --}}
 				@if ($msg = Session::get('success'))
 					<div class="alert-toast mt-3 mr-4 absolute right-0 md:w-full max-w-xs">
 						<input type="checkbox" class="hidden" id="footertoast">
@@ -23,13 +23,15 @@
 						</label>
 					</div>
 				@endif
-
+				{{-- End of Notification Toast --}}
 				<p class="font-bold text-blue-500 py-4 text-xl">
 					Data Anggota PS. Sayta Wijasena
 				</p>
-				<button class="btn btn-sm mb-2 border-0 bg-green-500 bg-transparent hover:bg-green-600 rounded-lg text-white">
-					Tambah
-				</button>
+				<a href="{{ route('anggota.create') }}">
+					<button class="btn btn-sm mb-2 border-0 bg-green-500 bg-transparent hover:bg-green-600 rounded-lg text-white">
+						Tambah
+					</button>
+				</a>
 				<div class="mb-4 mt-2 rounded-xl bg-white shadow-md">
 					<div class="pb-2 pt-1">
 						<table class="table-auto w-full text-left">
@@ -44,7 +46,7 @@
 								</tr>
 							</thead>
 							<tbody class="text-gray-600 bg-white">
-
+								{{-- Data Table --}}
 								@forelse ($anggotas as $anggota)
 								<tr class="hover:bg-gray-200 hover:bg-opacity-50">
 									<td class="px-4 py-2">{{ $anggota->nomor_induk }}</td>
@@ -125,7 +127,7 @@
 									<td class="pl-4">Data Kosong</td>
 								</tr>
 								@endforelse
-								
+								{{-- End of Data Table --}}
 							</tbody>
 						</table>
 						{{ $anggotas->links('layouts/pagination') }}
@@ -133,20 +135,18 @@
 				</div>
 			</div>
 		</div>
-
+		{{-- Notification Toast Style --}}
 		<style>
 			/*Toast open/load animation*/
 			.alert-toast {
 				-webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 						animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 			}
-
 			/*Toast close animation*/
 			.alert-toast input:checked ~ * {
 				-webkit-animation: fade-out-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 						animation: fade-out-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 			}
-
 			/* -------------------------------------------------------------
 			* Animations generated using Animista * w: http://animista.net, 
 			* ---------------------------------------------------------- */
