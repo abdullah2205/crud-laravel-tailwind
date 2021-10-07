@@ -5,25 +5,28 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-		<title>SIM PS. Satya Wijasena</title>
+		<title>SIM PS</title>
 	</head>
 	<body>
 		<div class="container h-screen py-1 px-4 mx-auto bg-yellow-200">
 			<div class="my-4 rounded-xl glass shadow-lg py-1 px-4">
-				{{-- Error Alert  --}}
-				@if (count($errors))
-					<div class="alert alert-danger">
-						<ul class="mb-0">
-							@foreach ($errors->all() as $error)
-							<li class="m-0 p-0">{{ $error }}</li>
-							@endforeach
-						</ul>
-					</div>
-				@endif
-				{{-- End Error Alert --}}
 				<p class="font-bold text-yellow-500 py-4 text-xl">
 					Ubah Data Anggota
 				</p>
+				{{-- Error Alert  --}}
+				@if (count($errors))
+				<div class="alert bg-red-500 text-white block mb-4">
+					@foreach ($errors->all() as $error)
+					<div class="py-1">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current"> 
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>                         
+						</svg> 
+						<label>{{ $error }}</label>
+					</div>
+					@endforeach
+				</div>
+				@endif
+				{{-- End Error Alert --}}
 				<div class="mb-4 rounded-xl bg-white px-4 py-1">
 					<div class="pb-2 pt-1 text-gray-600">
 						<form action="{{ route('anggota.update', $anggotas->id) }}" method="post" class="grid grid-cols-3 gap-3">

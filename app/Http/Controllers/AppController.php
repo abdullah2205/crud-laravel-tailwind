@@ -47,7 +47,7 @@ class AppController extends Controller
             'ikat_pinggang' => 'required',
             'jabatan' => 'required'
         ],
-        ['required' => ':attribute harus diisi!']); //ini dari attribut name dari form
+        ['required' => 'Bagian :attribute harus diisi!']); //ini dari attribut name dari form
 
         Anggota::create([
             'nomor_induk' => $request->nomor_induk, 
@@ -109,7 +109,7 @@ class AppController extends Controller
             'ikat_pinggang' => 'required',
             'jabatan' => 'required'
         ],
-        ['required' => ':attribute harus diisi!']); //ini dari attribut name dari form
+        ['required' => 'Bagian :attribute harus diisi!']); //ini dari attribut name dari form
 
         $data['anggotas']->update($request->all());
 

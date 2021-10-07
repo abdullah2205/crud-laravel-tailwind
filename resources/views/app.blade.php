@@ -6,7 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-		<title>SIM PS. Satya Wijasena</title>
+		<title>SIM PS</title>
 	</head>
 	<body>
 		<div class="container py-1 px-4 h-screen mx-auto bg-blue-200">
@@ -25,7 +25,7 @@
 				@endif
 				{{-- End of Notification Toast --}}
 				<p class="font-bold text-blue-500 py-4 text-xl">
-					Data Anggota PS. Sayta Wijasena
+					List Data Anggota
 				</p>
 				<a href="{{ route('anggota.create') }}">
 					<button class="btn btn-sm mb-2 border-0 bg-green-500 bg-transparent hover:bg-green-600 rounded-lg text-white">
