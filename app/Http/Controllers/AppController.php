@@ -74,6 +74,7 @@ class AppController extends Controller
      */
     public function update(AnggotaRequest $request, $id)
     {
+        $data['anggotas'] = Anggota::findOrFail($id);
         $data['anggotas']->update($request->all());
 
         return redirect()->route('anggota.index')->with('success', 'Data Anggota berhasil diubah!');
@@ -87,8 +88,8 @@ class AppController extends Controller
      */
     public function destroy($id)
     {
-        $anggota = Anggota::findOrFail($id);
-        $anggota->delete();
+        $data = Anggota::findOrFail($id);
+        $data->delete();
 
         return redirect()->route('anggota.index')->with('success', 'Data Anggota berhasil dihapus!');
     }
