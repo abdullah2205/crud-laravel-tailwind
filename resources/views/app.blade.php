@@ -33,9 +33,9 @@
 					</button>
 				</a>
 				<div class="mb-4 mt-2 rounded-xl bg-white shadow-md">
-					<div class="pb-2 pt-1">
+					<div class="overflow-hidden align-middle shadow-lg rounded-xl">
 						<table class="table-auto w-full text-left">
-							<thead class="text-blue-500">
+							<thead class="text-blue-500 uppercase">
 								<tr>
 									<th class="w-28 py-4 pl-4">No. Induk</th>
 									<th class="w-72">Nama</th>
@@ -49,7 +49,7 @@
 								{{-- Data Table --}}
 								@forelse ($anggotas as $anggota)
 								<tr class="hover:bg-gray-200 hover:bg-opacity-50">
-									<td class="px-4 py-2">{{ $anggota->nomor_induk }}</td>
+									<td class="px-4">{{ $anggota->nomor_induk }}</td>
 									<td>{{ $anggota->nama }}</td>
 									<td>{{ $anggota->ranting_latihan }}</td>
 									<td>{{ $anggota->ikat_pinggang }}</td>
